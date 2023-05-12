@@ -1,0 +1,48 @@
+
+
+<div mat-dialog-content>
+  
+  <form [formGroup]="movieService.movieForm">
+    <h1 mat-dialog-title>Movie Create</h1>
+      <mat-grid-list cols="2">
+          
+          <mat-grid-tile>
+              <div class="controles-container">
+                <!-- <input type="hidden" formControlName="$key"> for primary key-->
+              
+               <mat-form-field>
+          <mat-select formControlName="typeId" placeholder="Type">
+          
+          <ng-container *ngFor="let type of types">
+            <mat-option  value="{{type.id}}">{{type.description}}</mat-option>
+          </ng-container>
+          </mat-select>
+        </mat-form-field> 
+            
+      
+         <mat-form-field>
+                  <input formControlName="name" matInput placeholder="Movie Name">
+                  <mat-error *ngIf="movieService.movieForm.controls['name'].errors?.required">This field is required.</mat-error>
+                </mat-form-field>               
+                
+  
+            <div mat-dialog-actions>
+              <button mat-raised-button color="primary" type="submit" (click)="closeDialog()">Back to List</button>
+              <button class="buttonSave" mat-raised-button (click)="SaveMovie()" [disabled]="movieService.movieForm.invalid">Save</button>
+            </div>
+  
+              </div>
+        
+        
+      
+            </mat-grid-tile>
+        
+        
+      </mat-grid-list>
+    
+  
+  
+  
+  </form>
+  
+  </div>
